@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
@@ -10,12 +10,14 @@ import Profiles from './pages/Profiles/Profiles'
 
 import * as authService from './services/authService'
 import * as propertyService from './services/propertyService'
+import PropertyList from './pages/Properties/PropertyList'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [properties, setProperties] = useState([])
   const navigate = useNavigate()
   console.log(user)
+  console.log(properties)
 
   const handleLogout = () => {
     authService.logout()
@@ -31,6 +33,14 @@ const App = () => {
     const property = await propertyService.createProperty(propertyData)
     setProperties([...properties, property])
   } 
+
+  useEffect(() => { 
+    const fetchData = async () => {
+        const data = await propertyService.getAllProperties()
+        setProperties(data)
+    }
+    fetchData()
+  }, [])
 
   return (
     <>
@@ -50,6 +60,12 @@ const App = () => {
             element={
               <PropertyForm addProperty={addProperty} user={user}/>
             }
+      />
+      <Route 
+        path="/properties"
+        element={
+            <PropertyList properties={properties} />
+        }
       />
       </Routes>
     </>

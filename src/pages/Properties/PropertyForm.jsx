@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
+import PropertyInput from './PropertyInputs'
 
 //----------------------Services----------------------\\
 
@@ -14,14 +15,14 @@ const PropertyForm = (props) => {
 
     const handleSubmit = async (e) => { 
         e.preventDefault()
-        id ? props.updateProperty(form) : props.createProperty(form)
+        id ? props.updateProperty(form) : createProperty(form)
         navigate('/properties')
     }
 
-//    const handleChange = (e) => { 
- //       setForm({ ...form, [e.target.name]: e.target.value })
-  //  }
-//    useEffect(() => { 
+    const handleChange = (e) => { 
+        setForm({ ...form, [e.target.name]: e.target.value })
+    }
+//   useEffect(() => { 
 //        const fetchOne = async () => { 
 //            const data = await getOne(id)
 //            setForm({ 
@@ -38,14 +39,14 @@ const PropertyForm = (props) => {
         <>
             <div className="page-header">
                 {
-                    id 
-                    ? <h1>You haven\'t added any properties yet</h1>
+                    !id 
+                    ? <h1>You haven't added any properties yet</h1>
                     : <><h1>Add Property</h1></>
                 } 
             </div>
             <section>
-                <form>
-                    property inputs 
+                <form onSubmit={handleSubmit}>
+                    <PropertyInput form={form} handleChange={handleChange} />
                     <button type="submit" className="btn submit">Submit!</button>
                 </form>
             </section>

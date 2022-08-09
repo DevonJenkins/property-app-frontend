@@ -19,3 +19,12 @@ try {
   throw error 
   }
 }
+
+export const getAllProperties = async () => {
+  try {
+   const res = await fetch(`${BASE_URL}`) 
+   return await res.json()
+  } catch (error) {
+   throw error 
+  }
+}
