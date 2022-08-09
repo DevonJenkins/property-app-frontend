@@ -4,7 +4,10 @@ import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
+import PropertyForm from './pages/Properties/PropertyForm'
 import Profiles from './pages/Profiles/Profiles'
+
+
 import * as authService from './services/authService'
 import * as propertyService from './services/propertyService'
 
@@ -25,7 +28,7 @@ const App = () => {
   }
 
   const addProperty = async (propertyData) => {
-    const property = await propertyService.create(propertyData)
+    const property = await propertyService.createProperty(propertyData)
     setProperties([...properties, property])
   } 
 
@@ -42,6 +45,12 @@ const App = () => {
           path="/login"
           element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
         />
+        <Route 
+            path="/properties/new"
+            element={
+              <PropertyForm addProperty={addProperty} user={user}/>
+            }
+      />
       </Routes>
     </>
   )

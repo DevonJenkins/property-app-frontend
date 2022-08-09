@@ -1,9 +1,9 @@
-import * as tokenService from '../services/to'
+import * as tokenService from './tokenService'
 
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/api/properties/`
 
-export const create = async (property) => {
+export const createProperty = async (property) => {
 try {
  const res = await fetch(BASE_URL, {
     method: "POST",
