@@ -21,6 +21,7 @@ const PropertyForm = (props) => {
     const handleChange = (e) => { 
         setForm({ ...form, [e.target.name]: e.target.value })
     }
+
    useEffect(() => { 
         const fetchOne = async () => { 
             const data = await getOne(id)
@@ -37,11 +38,12 @@ const PropertyForm = (props) => {
     return ( 
         <>
             <div className="page-header">
-                {
-                    !id 
-                    ? <h1>You haven't added any properties yet</h1>
-                    : <><h1>Add Property</h1></>
-                } 
+
+        {id
+          ? <h1>Edit Cat</h1>
+          : <><h1>Add Cat</h1></>
+        }
+
             </div>
             <section>
                 <form onSubmit={handleSubmit}>

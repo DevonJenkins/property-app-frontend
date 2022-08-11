@@ -6,6 +6,8 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import PropertyForm from './pages/Properties/PropertyForm'
 import PropertyList from './pages/Properties/PropertyList'
+import PropertyDetails from './pages/Properties/PropertyDetails'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Profiles from './pages/Profiles/Profiles'
 
 
@@ -61,12 +63,20 @@ const App = () => {
               <PropertyForm addProperty={addProperty} user={user}/>
             }
       />
-      <Route 
-        path="/properties"
-        element={
-            <PropertyList properties={properties} />
-        }
-      />
+          <Route 
+            path="/properties"
+            element={
+                <PropertyList properties={properties} />
+            }
+          />
+          <Route 
+            path="/properties/:id"
+            element={
+                <ProtectedRoute user={user}>
+                    <PropertyDetails user={user}/>
+                </ProtectedRoute>
+            }
+          />
       </Routes>
     </>
   )
