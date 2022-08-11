@@ -66,7 +66,7 @@ const App = () => {
           <Route 
             path="/properties"
             element={
-                <PropertyList properties={properties} />
+                <PropertyList properties={properties} user={user}/>
             }
           />
           <Route 

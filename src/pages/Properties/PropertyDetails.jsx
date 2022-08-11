@@ -19,17 +19,18 @@ const PropertyDetails = ({ user }) => {
         fetchOne()
     }, [id])
 
-    console.log(property)
     if (!property) return <h1>Loading Property Details</h1>
+    console.log(property)
     console.log(property.items)
     return (
         <>
             <section>
                 <h1>{property.name}</h1>
+                <h1>{property.profile_id}</h1>
                 <ul>
                 
                 {property.items.map((item) => (
-                    <li>{item.name}</li>
+                    <li key={item.id}>{item.name}</li>
                 ))}
                 </ul>
             </section>
