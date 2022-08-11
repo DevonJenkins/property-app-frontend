@@ -5,9 +5,9 @@ const PropertyInput = ({ form, handleChange}) => {
          <h2>This is the input component</h2>
          <label htmlFor="name">Name:</label>
          <input
-            defaultValue={form.name ? form.name : ''}
-            onChange={handleChange} id ="name"
-            type="text" placehold="Name" autoComplete="off"
+            value={form.name}
+            onChange={handleChange} id ="name" required name="name"
+            type="text" placeholder="Name" autoComplete="off"
          />
        </>
    )

@@ -5,8 +5,7 @@ import PropertyInput from './PropertyInputs'
 
 //----------------------Services----------------------\\
 
-import { createProperty } from '../../services/propertyService'
-
+import { getOne } from '../../services/propertyService'
 
 const PropertyForm = (props) => {
     const { id } = useParams()
@@ -15,25 +14,25 @@ const PropertyForm = (props) => {
 
     const handleSubmit = async (e) => { 
         e.preventDefault()
-        id ? props.updateProperty(form) : createProperty(form)
+        id ? props.updateProperty(form) : props.addProperty(form)
         navigate('/properties')
     }
 
     const handleChange = (e) => { 
         setForm({ ...form, [e.target.name]: e.target.value })
     }
-//   useEffect(() => { 
-//        const fetchOne = async () => { 
-//            const data = await getOne(id)
-//            setForm({ 
-//                id: data.property.id,
-//                name: data.property.name,
-//
-//            })
-//        }
-//        id && fetchOne()
-//        return () => setForm({})
-//}, [id])
+   useEffect(() => { 
+        const fetchOne = async () => { 
+            const data = await getOne(id)
+            setForm({ 
+                id: data.property.id,
+                name: data.property.name,
+
+            })
+        }
+        id && fetchOne()
+        return () => setForm({})
+}, [id])
 
     return ( 
         <>

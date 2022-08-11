@@ -5,12 +5,12 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import PropertyForm from './pages/Properties/PropertyForm'
+import PropertyList from './pages/Properties/PropertyList'
 import Profiles from './pages/Profiles/Profiles'
 
 
 import * as authService from './services/authService'
 import * as propertyService from './services/propertyService'
-import PropertyList from './pages/Properties/PropertyList'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -30,7 +30,7 @@ const App = () => {
   }
 
   const addProperty = async (propertyData) => {
-    const property = await propertyService.createProperty(propertyData)
+    const property = await propertyService.create(propertyData)
     setProperties([...properties, property])
   } 
 
