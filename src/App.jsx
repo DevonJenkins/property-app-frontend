@@ -36,6 +36,13 @@ const App = () => {
     setProperties([...properties, property])
   } 
 
+  const editProperty = async (propertyData) => {
+      const updatedProperty = await propertyService.updateProperty(propertyData)
+      setProperties(properties.map((property) => (
+        property.id === updatedProperty.id ? updatedProperty : property
+      )))
+  }
+
   useEffect(() => { 
     const fetchData = async () => {
         const data = await propertyService.getAllProperties()
@@ -74,6 +81,14 @@ const App = () => {
             element={
                 <ProtectedRoute user={user}>
                     <PropertyDetails user={user}/>
+                </ProtectedRoute>
+            }
+          />
+          <Route 
+            path="/properties/:id/edit"
+            element={
+                <ProtectedRoute user={user}>
+                    <PropertyForm properties={properties} user={user} editProperty={editProperty}/>
                 </ProtectedRoute>
             }
           />

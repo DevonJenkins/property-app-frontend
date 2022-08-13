@@ -14,7 +14,7 @@ const PropertyForm = (props) => {
 
     const handleSubmit = async (e) => { 
         e.preventDefault()
-        id ? props.updateProperty(form) : props.addProperty(form)
+        id ? props.editProperty(form) : props.addProperty(form)
         navigate('/properties')
     }
 
@@ -28,7 +28,7 @@ const PropertyForm = (props) => {
             setForm({ 
                 id: data.property.id,
                 name: data.property.name,
-
+                descriptions: data.property.description
             })
         }
         id && fetchOne()

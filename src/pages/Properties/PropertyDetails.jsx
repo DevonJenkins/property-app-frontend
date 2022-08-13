@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import PropertyActions from '../../components/PropertyCard/PropertyActions'
 
 //Services
 import { getOne } from '../../services/propertyService'
@@ -34,6 +35,9 @@ const PropertyDetails = ({ user }) => {
                 ))}
                 </ul>
             </section>
+            <div>
+                < PropertyActions property={ property } user={ user }/>
+            </div>
         </>
   )
 }

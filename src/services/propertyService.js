@@ -37,3 +37,20 @@ export const getOne = async (id) => {
     throw error
   }
 }
+
+export const updateProperty = async (property) => {
+  try {
+    const res = await fetch(`${BASE_URL}${property.id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify(property)
+  })
+    return await res.json()
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
