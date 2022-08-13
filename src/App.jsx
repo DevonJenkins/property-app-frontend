@@ -8,6 +8,7 @@ import PropertyForm from './pages/Properties/PropertyForm'
 import PropertyList from './pages/Properties/PropertyList'
 import PropertyDetails from './pages/Properties/PropertyDetails'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import Confirmation from './components/Confirmation/Confirmation'
 import Profiles from './pages/Profiles/Profiles'
 
 
@@ -41,6 +42,11 @@ const App = () => {
       setProperties(properties.map((property) => (
         property.id === updatedProperty.id ? updatedProperty : property
       )))
+  }
+  
+  const deleteProperty = async (id) => {
+    await propertyService.deleteOneProperty(id)
+    setProperties(properties.filter(property => property.id !== parseInt(id)))
   }
 
   useEffect(() => { 
@@ -89,6 +95,14 @@ const App = () => {
             element={
                 <ProtectedRoute user={user}>
                     <PropertyForm properties={properties} user={user} editProperty={editProperty}/>
+                </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/properties/:id/confirmation"
+            element={
+                <ProtectedRoute user={user}>
+                    <Confirmation deleteProperty={deleteProperty} user={user}/>
                 </ProtectedRoute>
             }
           />

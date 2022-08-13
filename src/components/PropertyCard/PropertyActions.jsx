@@ -6,7 +6,7 @@ const PropertyActions = ({ property, user}) => {
         property.profile_id === user.id && 
         <div>
             <button className="edit btn" onClick={() => navigate(`/properties/${property.id}/edit`, { state: property})}>edit</button>
-            <button>delete</button>
+            <button className="btn delete"onClick={() => navigate(`/properties/${property.id}/confirmation`, { state: property })}>Delete</button>
         </div>
 
         
