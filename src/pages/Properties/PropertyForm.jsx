@@ -6,6 +6,7 @@ import PropertyInput from './PropertyInputs'
 //----------------------Services----------------------\\
 
 import { getOne } from '../../services/propertyService'
+import { addOneItem } from '../../services/propertyService'
 
 const PropertyForm = (props) => {
     const { id } = useParams()
@@ -21,6 +22,7 @@ const PropertyForm = (props) => {
     const handleChange = (e) => { 
         setForm({ ...form, [e.target.name]: e.target.value })
     }
+
 
    useEffect(() => { 
         const fetchOne = async () => { 
@@ -40,8 +42,8 @@ const PropertyForm = (props) => {
             <div className="page-header">
 
         {id
-          ? <h1>Edit Cat</h1>
-          : <><h1>Add Cat</h1></>
+          ? <h1>Edit Property</h1>
+          : <><h1>Add Property</h1></>
         }
 
             </div>

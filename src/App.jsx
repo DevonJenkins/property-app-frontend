@@ -10,7 +10,7 @@ import PropertyDetails from './pages/Properties/PropertyDetails'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Confirmation from './components/Confirmation/Confirmation'
 import Profiles from './pages/Profiles/Profiles'
-
+import * as style from "./App.css"
 
 import * as authService from './services/authService'
 import * as propertyService from './services/propertyService'

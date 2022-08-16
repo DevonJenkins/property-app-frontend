@@ -6,6 +6,7 @@ import PropertyActions from '../../components/PropertyCard/PropertyActions'
 import { getOne } from '../../services/propertyService'
 
 //Components 
+import Items from '../../components/Items/Items'
 
 
 const PropertyDetails = ({ user }) => {
@@ -38,6 +39,9 @@ const PropertyDetails = ({ user }) => {
             <div>
                 < PropertyActions property={ property } user={ user }/>
             </div>
+		    	<section>
+						<Items user={user} property={property} setProperty={setProperty}/>
+					</section>
         </>
   )
 }
