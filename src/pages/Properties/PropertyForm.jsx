@@ -6,7 +6,6 @@ import PropertyInput from './PropertyInputs'
 //----------------------Services----------------------\\
 
 import { getOne } from '../../services/propertyService'
-import { addOneItem } from '../../services/propertyService'
 
 const PropertyForm = (props) => {
     const { id } = useParams()

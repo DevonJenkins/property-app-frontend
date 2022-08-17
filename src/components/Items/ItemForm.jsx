@@ -15,10 +15,17 @@ const ItemForm = ({ property, setProperty }) => {
 		setProperty(item)
 		setForm(initialState)
 	}
+const handleChange = (e) => {
+	setForm({ ...form, [e.target.name]: e.target.value})
+}
 
 	return (
 		<>
 			Item Form 
+			<form onSubmit={addItem}>
+				<input name='name' onChange={handleChange} type="string" value={form.name}/>
+	      <button type="submit" className="submit btn">Add Item</button>
+			</form>
 		</>
 	)
 }
