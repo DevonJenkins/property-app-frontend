@@ -9,6 +9,7 @@ import PropertyList from './pages/Properties/PropertyList'
 import PropertyDetails from './pages/Properties/PropertyDetails'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Confirmation from './components/Confirmation/Confirmation'
+import ItemDetails from './pages/Items/ItemDetails'
 import Profiles from './pages/Profiles/Profiles'
 import * as style from "./App.css"
 
@@ -18,9 +19,9 @@ import * as propertyService from './services/propertyService'
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [properties, setProperties] = useState([])
+	const [item, setItem] = useState([])
   const navigate = useNavigate()
-  console.log(user)
-  console.log(properties)
+
 
   const handleLogout = () => {
     authService.logout()
@@ -106,6 +107,14 @@ const App = () => {
                 </ProtectedRoute>
             }
           />
+					<Route
+						path="/properties/:id/items/:id"
+		        element={
+              <ProtectedRoute user={user}>
+								  < ItemDetails user={user} item={item}/>
+							</ProtectedRoute>
+						}
+		/>
       </Routes>
     </>
   )

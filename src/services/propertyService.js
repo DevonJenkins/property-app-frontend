@@ -83,3 +83,12 @@ export const addOneItem = async(id, data) => {
     throw error
   }
 }
+
+export const getOneItem = async (property,data,item, id) => {
+  try {
+    const res = await fetch(`${BASE_URL}${id}/items/${item.id}`)
+    return await res.json()
+  } catch (error) {
+    throw error
+  }
+}
