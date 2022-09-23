@@ -20,6 +20,7 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [properties, setProperties] = useState([])
 	const [item, setItem] = useState([])
+	const [property, setProperty] = useState([])
   const navigate = useNavigate()
 
 
@@ -111,7 +112,7 @@ const App = () => {
 						path="/properties/:id/items/:id"
 		        element={
               <ProtectedRoute user={user}>
-								  < ItemDetails user={user} item={item}/>
+								  < ItemDetails properties = {properties} user={user} property={property} item={property.item}/>
 							</ProtectedRoute>
 						}
 		/>

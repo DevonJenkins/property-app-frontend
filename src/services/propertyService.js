@@ -84,9 +84,10 @@ export const addOneItem = async(id, data) => {
   }
 }
 
-export const getOneItem = async (property,data,item, id) => {
+export const getOneItem = async (property,item,id) => {
   try {
-    const res = await fetch(`${BASE_URL}${id}/items/${item.id}`)
+		console.log(item)
+    const res = await fetch(`${BASE_URL}${id}/items`)
     return await res.json()
   } catch (error) {
     throw error

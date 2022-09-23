@@ -5,6 +5,7 @@ import PropertyActions from '../../components/PropertyCard/PropertyActions'
 
 //Services
 import { getOne } from '../../services/propertyService'
+import { getOneItem } from '../../services/propertyService'
 
 //Components 
 import Items from '../../components/Items/Items'
@@ -41,7 +42,8 @@ const PropertyDetails = ({ user }) => {
 					<ul>
 					{property.items.map((item) => (
 						<Link to={`/properties/${property.id}/items/${item.id}`}
-							key={item.id} item={item} user={user} className='Link'>
+							key={item.id} property={property} item={item} 
+						       getOneItem={getOneItem} user={user} className='Link'>
 						<li>{item.name}</li>
 		        <ItemCard property={property} item={item} />
 						</Link>
