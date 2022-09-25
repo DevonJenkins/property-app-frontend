@@ -68,6 +68,7 @@ export const deleteOneProperty = async (id) => {
   }
 }
 
+
 export const addOneItem = async(id, data) => {
   try {
     const res = await fetch(`${BASE_URL}${id}/items`, {
@@ -84,10 +85,21 @@ export const addOneItem = async(id, data) => {
   }
 }
 
-export const getOneItem = async (property,item,id) => {
+export const getAllItems = async (id) => {
   try {
-		console.log(item)
-    const res = await fetch(`${BASE_URL}${id}/items`)
+   const res = await fetch(`${BASE_URL}${id}/items`) 
+   return await res.json()
+  } catch (error) {
+   throw error 
+  }
+} 
+
+//why can't i pass property.id or item.id in? 
+//why is id undefined? 
+export const getOneItem = async (property_id, id) => {
+  try {
+		console.log('getOneItem: ', property_id, id)
+    const res = await fetch(`${BASE_URL}${property_id}/items/${id}`)
     return await res.json()
   } catch (error) {
     throw error

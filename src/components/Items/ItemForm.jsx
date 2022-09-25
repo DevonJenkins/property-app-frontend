@@ -8,9 +8,11 @@ const initialState = {
 
 const ItemForm = ({ property, setProperty }) => {
 	const [form, setForm] = useState(initialState)
+	const [items, setItems] = useState(null)
+	const [item, setItem] = useState(null)
 
-	const addItem = async (e) => {
-		e.preventDefault()
+	const addItem = async (itemData) => {
+		itemData.preventDefault()
 		const item = await addOneItem(property.id, form)
 		setProperty(item)
 		setForm(initialState)

@@ -2,33 +2,27 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {getOneItem} from '../../services/propertyService'
 
-//import getOneItem from property service 
-//
-const ItemDetails = (props) => {
-  const { id } = useParams
-	const[property, setProperty] = useState(null)
-	const[item, setItem] = useState(null)
-	
-
+const ItemDetails = ({user, property, item})  => {
+	console.log(`use params:`, useParams())
+	console.log(`item: ${item}`)
+  const { id } = useParams()
+	//const [item, setItem] = useState(null)
+	//const[property, setProperty] = useState(null)
+	console.log(`item details: ${id}`)
 
 	useEffect(() => {
 		const fetchOne = async () => {
-			const data = await getOneItem(id)
-			setItem(data.item)
-			console.log(data.item)
+			const data = await getOneItem(property, item, id)
+			//setItem(data)
+			console.log("data:", data)
 		}
 		fetchOne()
-	}, [id])
-	console.log(`user: ${props.user.name}`)
-	console.log(`props: ${props.name}`)
-	console.log(`item: ${props.name}`)
-	console.log(`property: ${property}`)
+	}, [property, item, id])
 	return (
 		<>
 	    <h1>Item Details Page</h1>
 			<section>
-				<h2>help me god</h2>	
-		
+				{id}
 			</section>
 		</>
 	)

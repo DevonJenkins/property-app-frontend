@@ -5,25 +5,36 @@ import PropertyActions from '../../components/PropertyCard/PropertyActions'
 
 //Services
 import { getOne } from '../../services/propertyService'
-import { getOneItem } from '../../services/propertyService'
+//import { getOneItem } from '../../services/propertyService'
 
 //Components 
 import Items from '../../components/Items/Items'
 import ItemCard from '../../components/Items/ItemCard'
 
 
-const PropertyDetails = ({ user }) => {
+const PropertyDetails = ({user}) => {
     const { id } = useParams()
     const [property, setProperty] = useState(null)
     const [item, setItem] = useState(null)
+		console.log("id: ", id)
 
     useEffect(() => {
         const fetchOne = async () => {
             const data = await getOne(id)
             setProperty(data.property)
+						console.log(`property data: ${data}`)
         }
         fetchOne()
     }, [id])
+	
+	//	useEffect(() => {
+	//		const fetchOne = async () => {
+	//			const data = await getOneItem(id)
+	//			setItem(data.item)
+	//			console.log(`item data: ${data}`)
+	//		}
+	//		fetchOne()
+	//	}, [id])
 
     if (!property) return <h1>Loading Property Details</h1>
     console.log(property)
@@ -38,15 +49,13 @@ const PropertyDetails = ({ user }) => {
                 < PropertyActions property={ property } user={ user }/>
             </div>
 		    	<section>
+					<Link to= {`/properties/${property.id}/items`} >
+						Items
+					</Link>
 						<Items user={user} property={property} setProperty={setProperty}/>
 					<ul>
 					{property.items.map((item) => (
-						<Link to={`/properties/${property.id}/items/${item.id}`}
-							key={item.id} property={property} item={item} 
-						       getOneItem={getOneItem} user={user} className='Link'>
-						<li>{item.name}</li>
-		        <ItemCard property={property} item={item} />
-						</Link>
+		        <ItemCard key={item.id} property={property} item={item} />
 					))}
 					</ul>
 					</section>

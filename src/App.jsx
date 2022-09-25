@@ -9,6 +9,7 @@ import PropertyList from './pages/Properties/PropertyList'
 import PropertyDetails from './pages/Properties/PropertyDetails'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Confirmation from './components/Confirmation/Confirmation'
+import ItemsList from './pages/Items/ItemsList'
 import ItemDetails from './pages/Items/ItemDetails'
 import Profiles from './pages/Profiles/Profiles'
 import * as style from "./App.css"
@@ -20,6 +21,7 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [properties, setProperties] = useState([])
 	const [item, setItem] = useState([])
+	const [items, setItems] = useState([])
 	const [property, setProperty] = useState([])
   const navigate = useNavigate()
 
@@ -50,11 +52,24 @@ const App = () => {
     await propertyService.deleteOneProperty(id)
     setProperties(properties.filter(property => property.id !== parseInt(id)))
   }
+	//should I make an add item function to create item data even though item 
+	//creation already works? 
+	//
+	//edit item
+	//delete item
 
   useEffect(() => { 
     const fetchData = async () => {
         const data = await propertyService.getAllProperties()
         setProperties(data)
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => { 
+    const fetchData = async () => {
+        const data = await propertyService.getAllItems()
+        setItems(data)
     }
     fetchData()
   }, [])
@@ -77,7 +92,7 @@ const App = () => {
             element={
               <PropertyForm addProperty={addProperty} user={user}/>
             }
-      />
+				/>
           <Route 
             path="/properties"
             element={
@@ -88,7 +103,7 @@ const App = () => {
             path="/properties/:id"
             element={
                 <ProtectedRoute user={user}>
-                    <PropertyDetails user={user}/>
+                    <PropertyDetails property={property} user={user}/>
                 </ProtectedRoute>
             }
           />
@@ -109,13 +124,21 @@ const App = () => {
             }
           />
 					<Route
+						path="/properties/:id/items"
+						element={
+							<ProtectedRoute user={user}>
+								<ItemsList property={property} user={user} items={items}/>
+							</ProtectedRoute>
+						}
+					/>
+					<Route
 						path="/properties/:id/items/:id"
 		        element={
               <ProtectedRoute user={user}>
-								  < ItemDetails properties = {properties} user={user} property={property} item={property.item}/>
+								  < ItemDetails property={property} item={item} user={user} />
 							</ProtectedRoute>
 						}
-		/>
+					/>
       </Routes>
     </>
   )
