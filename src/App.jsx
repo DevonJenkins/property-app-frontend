@@ -135,7 +135,7 @@ const App = () => {
 						path="/properties/:id/items/:id"
 		        element={
               <ProtectedRoute user={user}>
-								  < ItemDetails property={property} items={items} item={item} user={user} />
+								  < ItemDetails items={items} user={user} />
 							</ProtectedRoute>
 						}
 					/>

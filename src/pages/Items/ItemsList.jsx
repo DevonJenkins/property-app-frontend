@@ -1,7 +1,3 @@
-import { useState, useEffect} from "react"
-import { useLocation } from "react-router-dom"
-
-//components
 import ItemCard from "../../components/Items/ItemCard"
 
 const ItemList = ({ user, property, items}) => {
