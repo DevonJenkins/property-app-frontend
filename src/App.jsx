@@ -52,9 +52,6 @@ const App = () => {
     await propertyService.deleteOneProperty(id)
     setProperties(properties.filter(property => property.id !== parseInt(id)))
   }
-	//should I make an add item function to create item data even though item 
-	//creation already works? 
-	//
 	//edit item
 	//delete item
 
@@ -76,7 +73,7 @@ const App = () => {
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
+      <NavBar user={user} setProperty={setProperty} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
         <Route
@@ -124,10 +121,10 @@ const App = () => {
             }
           />
 					<Route
-						path="/properties/:id/items"
+						path="/properties/items"
 						element={
 							<ProtectedRoute user={user}>
-								<ItemsList property={property} user={user} items={items}/>
+								<ItemsList  user={user} items={items}/>
 							</ProtectedRoute>
 						}
 					/>

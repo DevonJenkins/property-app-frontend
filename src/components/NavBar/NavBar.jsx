@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-const NavBar = ({ user, handleLogout }) => {
+const NavBar = ({ user,  handleLogout, property }) => {
+	console.log("nav bar id:", useParams())
   return (
     <>
       {user ?
@@ -9,6 +11,7 @@ const NavBar = ({ user, handleLogout }) => {
               <li className='Link'><Link className='Link' to="" onClick={handleLogout}>LOG OUT</Link></li>
               <li className='Link'><Link className='Link' to="/properties/new">Add a Property</Link></li>
               <li className='Link'><Link className='Link'to="/properties">Properties</Link></li>
+							<li className='Link'> <Link className='Link' to="/properties/items">banana</Link></li>
           </ul>
         </nav>
       :
