@@ -1,30 +1,43 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import {getOneItem} from '../../services/propertyService'
 
-const ItemDetails = ({user, property, item})  => {
-	console.log(`use params:`, useParams())
-	console.log(`item: ${item}`)
-  const { id } = useParams()
-	//const [item, setItem] = useState(null)
-	//const[property, setProperty] = useState(null)
-	console.log(`item details: ${id}`)
 
+const ItemDetails = ({user, property})  => {
+  const { id }  = useParams()
+	const { pathname } = useLocation()
+	const [item, setItem] = useState(null)
+	//i need to get property id to pass it into the use effect
+	const splitPathname = pathname.split("/")
+
+	const itemId = id //initalize item id variable make useEffect more clear
+	const propertyId = splitPathname[2]//separates property id from pathname 
 	useEffect(() => {
 		const fetchOne = async () => {
-			const data = await getOneItem(property, item, id)
-			//setItem(data)
-			console.log("data:", data)
+			const data = await getOneItem(itemId, propertyId) 
+			setItem(data)
 		}
 		fetchOne()
-	}, [property, item, id])
+	}, [itemId, propertyId])
 	return (
-		<>
+			<>
+
 	    <h1>Item Details Page</h1>
-			<section>
-				{id}
-			</section>
-		</>
+
+			{ item 
+				?
+				<div>
+					
+					<h1>Name: {item.item.name}</h1> 
+				
+					<h1>Description: {item.item.description ? item.item.description : "no description yet"}</h1>
+					
+				
+				</div>
+				: "loading item"
+			}
+				
+			</>
 	)
 }
 

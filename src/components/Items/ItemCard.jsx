@@ -1,14 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
+import PropertyCard from "../PropertyCard/PropertyCard"
 
-const ItemCard = ({ property,item }) => {
+const ItemCard = ({ property,item,user }) => {
 
   return(
+		
 		<>
-			<Link to={{
-				pathname: `/properties/${property.id}/items/${item.id}`,
-				state: {property, item}
-			}}>
-				<h1>{item.name}</h1>
+			
+			{console.log("user id: ", user.id)}
+			{console.log(useLocation())}
+		
+			<Link to={`/properties/${item.property_id}/items/${item.id}`} 
+			params={{banana: "banana"}}
+			item={item}
+			className="Link">
+				<h1>{item.name} : {item.property_id}</h1>
 			</Link>
 			<p>qty: quantity parameter does not exist yet</p>
 			<p>this is an item card</p>

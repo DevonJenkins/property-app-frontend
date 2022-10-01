@@ -94,12 +94,14 @@ export const getAllItems = async (id) => {
   }
 } 
 
-//why can't i pass property.id or item.id in? 
-//why is id undefined? 
-export const getOneItem = async (property_id, id) => {
+//i need to pass property id along with item id
+	//how can I pass property id into this function 
+	
+export const getOneItem = async (itemId, propertyId) => {
   try {
-		console.log('getOneItem: ', property_id, id)
-    const res = await fetch(`${BASE_URL}${property_id}/items/${id}`)
+		console.log(`get one item: ${itemId}:${propertyId}`)
+		
+    const res = await fetch(`${BASE_URL}/${propertyId}/items/${itemId}`)
     return await res.json()
   } catch (error) {
     throw error

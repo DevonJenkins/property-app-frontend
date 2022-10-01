@@ -3,13 +3,11 @@ import { useState } from "react";
 
 import { addOneItem } from '../../services/propertyService'
 const initialState = {
-	name: 'Name',
+	name: '',
 }
 
 const ItemForm = ({ property, setProperty }) => {
 	const [form, setForm] = useState(initialState)
-	const [items, setItems] = useState(null)
-	const [item, setItem] = useState(null)
 
 	const addItem = async (itemData) => {
 		itemData.preventDefault()

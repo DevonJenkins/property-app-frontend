@@ -1,12 +1,20 @@
 import { useState, useEffect} from "react"
+import { useLocation } from "react-router-dom"
 
-const ItemList = ({user, property, items}) => {
+//components
+import ItemCard from "../../components/Items/ItemCard"
 
+const ItemList = ({ user, property, items}) => {
 	return (
 		<>
 			<h1>Items list page</h1>
 			{items.map((item) => (
-				<h1 key={item.id}>{item.name}</h1>	
+		    <ItemCard 
+				key={item.id} 
+				property={property} 
+				item={item} 
+				user={user}
+				/>
 			))}
 		</>
 	)

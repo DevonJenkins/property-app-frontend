@@ -20,9 +20,9 @@ import * as propertyService from './services/propertyService'
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [properties, setProperties] = useState([])
-	const [item, setItem] = useState([])
-	const [items, setItems] = useState([])
 	const [property, setProperty] = useState([])
+	const [items, setItems] = useState([])
+	const [item, setItem] = useState([])
   const navigate = useNavigate()
 
 
@@ -135,7 +135,7 @@ const App = () => {
 						path="/properties/:id/items/:id"
 		        element={
               <ProtectedRoute user={user}>
-								  < ItemDetails property={property} item={item} user={user} />
+								  < ItemDetails property={property} items={items} item={item} user={user} />
 							</ProtectedRoute>
 						}
 					/>

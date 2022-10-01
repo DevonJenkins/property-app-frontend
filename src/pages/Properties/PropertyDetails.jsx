@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import PropertyActions from '../../components/PropertyCard/PropertyActions'
@@ -15,7 +16,7 @@ import ItemCard from '../../components/Items/ItemCard'
 const PropertyDetails = ({user}) => {
     const { id } = useParams()
     const [property, setProperty] = useState(null)
-    const [item, setItem] = useState(null)
+    //const [item, setItem] = useState(null)
 		console.log("id: ", id)
 
     useEffect(() => {
@@ -49,15 +50,7 @@ const PropertyDetails = ({user}) => {
                 < PropertyActions property={ property } user={ user }/>
             </div>
 		    	<section>
-					<Link to= {`/properties/${property.id}/items`} >
-						Items
-					</Link>
-						<Items user={user} property={property} setProperty={setProperty}/>
-					<ul>
-					{property.items.map((item) => (
-		        <ItemCard key={item.id} property={property} item={item} />
-					))}
-					</ul>
+					<Items user={user} property={property} setProperty={setProperty}/>
 					</section>
         </>
   )
