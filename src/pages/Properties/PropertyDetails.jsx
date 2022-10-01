@@ -28,14 +28,6 @@ const PropertyDetails = ({user}) => {
         fetchOne()
     }, [id])
 	
-	//	useEffect(() => {
-	//		const fetchOne = async () => {
-	//			const data = await getOneItem(id)
-	//			setItem(data.item)
-	//			console.log(`item data: ${data}`)
-	//		}
-	//		fetchOne()
-	//	}, [id])
 
     if (!property) return <h1>Loading Property Details</h1>
     console.log(property)
