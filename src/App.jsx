@@ -54,6 +54,11 @@ const App = () => {
   }
 	//edit item
 	//delete item
+	const deleteItem = async (id) => {
+		await propertyService.deleteOneItem(id)
+		setItems(items.filter(item => item.id !== parseInt(id)))
+	}
+	
 
   useEffect(() => { 
     const fetchData = async () => {
@@ -136,6 +141,14 @@ const App = () => {
 							</ProtectedRoute>
 						}
 					/>
+          <Route
+            path="/properties/:id/items/:id/confirmation"
+            element={
+                <ProtectedRoute user={user}>
+                    <Confirmation user={user} deleteItem={deleteItem} />
+                </ProtectedRoute>
+            }
+          />
       </Routes>
     </>
   )

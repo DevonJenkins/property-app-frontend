@@ -94,16 +94,27 @@ export const getAllItems = async (id) => {
   }
 } 
 
-//i need to pass property id along with item id
-	//how can I pass property id into this function 
-	
 export const getOneItem = async (itemId, propertyId) => {
   try {
-		console.log(`get one item: ${itemId}:${propertyId}`)
-		
     const res = await fetch(`${BASE_URL}/${propertyId}/items/${itemId}`)
     return await res.json()
   } catch (error) {
     throw error
   }
+}
+
+export const deleteOneItem = async (itemId, propertyId) => {
+		console.log(`delete one item: ${itemId}:${propertyId}`)
+	try {
+		const res = await fetch(`${BASE_URL}${propertyId}/items/${itemId}`, {
+      method: "DELETE",
+      headers: { 'Authorization': `Bearer ${tokenService.getToken()}`}
+		})	
+		return await res.json()
+	} catch (error) {
+		console.log(error)
+		throw error
+		
+	}
+
 }

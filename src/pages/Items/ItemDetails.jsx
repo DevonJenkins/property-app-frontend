@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, Navigate, useNavigate} from 'react-router-dom'
 import {getOneItem} from '../../services/propertyService'
 
 
@@ -7,6 +7,7 @@ const ItemDetails = ({user, property})  => {
   const { id }  = useParams()
 	const { pathname } = useLocation()
 	const [item, setItem] = useState(null)
+	const navigate = useNavigate()
 	//i need to get property id to pass it into the use effect
 	const splitPathname = pathname.split("/")
 
@@ -37,6 +38,7 @@ const ItemDetails = ({user, property})  => {
 				: "loading item"
 			}
 				
+        <button className="btn delete"onClick={() => navigate(`/properties/${propertyId}/items/${itemId}/confirmation`, { state: item })}>Delete</button>
 			</>
 	)
 }
